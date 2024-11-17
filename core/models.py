@@ -121,8 +121,7 @@ class Product(models.Model):
     description = models.TextField(
         null=True, blank=True, default="This is the product description"
     )
-    price = models.DecimalField(
-        max_digits=999999999999, decimal_places=2, default="1.99"
+    price = models.DecimalField( decimal_places=2, default="1.99"
     )
     stock_items = models.IntegerField(null=True, blank=True)
 
