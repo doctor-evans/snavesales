@@ -76,7 +76,7 @@ WSGI_APPLICATION = "vintage.wsgi.application"
 DATABASES = {
     'default': dj_database_url.config(
         # Replace this value with your local database's connection string.
-        default='postgresql://postgres:postgres@localhost:5432/vintage',
+        default='postgresql://vintage:mJYJmnZtsJitdE9inByrXoLEVm01WPJD@dpg-cst40edumphs73fm8geg-a.oregon-postgres.render.com/vintage_id2e',
         conn_max_age=600
     )
 }

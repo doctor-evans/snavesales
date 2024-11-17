@@ -35,7 +35,7 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ["title", "category_image"]
+    list_display = ["title",]
 
 
 class VendorAdmin(admin.ModelAdmin):
@@ -46,8 +46,7 @@ class VendorAdmin(admin.ModelAdmin):
     # Make this method read-only in the form view
     time_left.short_description = 'Time Left'
 
-    # If you want it to show up in the form as well, you can add it to the fields or readonly_fields
-    readonly_fields = ('time_left',)
+    
 
 class ProductOfTheWeekAdmin(admin.ModelAdmin):
     list_display = ["product"]
