@@ -1,0 +1,49 @@
+{% extends 'partials/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <hr class="mb-80" />
+    <div class="col-lg-9">
+        <h3 class="mb-30">Update Vendor</h3>
+        <div class="card-body">
+            <form method="POST" action="{% url 'core:updatevendor' %}">
+                {% csrf_token %}
+                <div class=" row">
+                    <div class="form-group col-md-6">
+                        <label>Description</label>
+                        {{form.description}}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Contact (Whatsapp)</label>
+                        {{form.contact}}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Address</label>
+                        {{form.address}}
+                    </div>
+
+                    <div class="col-md-12">
+                        <button type="submit" class="btn" name="submit">Update</button>
+                    </div>
+                </div>
+            </form>
+            {% if form.errors %}
+            <div class="alert alert-danger">
+                <ul>
+                    {% for field in form %}
+                    {% for error in field.errors %}
+                    <li>{{ field.label }}: {{ error }}</li>
+                    {% endfor %}
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

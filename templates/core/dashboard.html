@@ -1,0 +1,139 @@
+{% extends 'partials/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<main class="main pages">
+    <div class="page-content pt-50">
+        <div class="container">
+            <h1 class="display-2 mt-30 pb-30">Dashboard</h1>
+            <hr class="mb-80" />
+            <div class="row">
+                <div class="col-lg-9">
+                    <h3 class="mb-30">Profile</h3>
+                    <div class="card-body" id="account-update">
+                        <form method="post" name="enq" class="account-detail-update" data-userid="{{user.id}}">
+                            {% csrf_token %}
+                            <div class=" row">
+                                <div class="form-group col-md-6">
+                                    <label>First Name <span class="required">*</span></label>
+                                    <input required="" class="form-control" value="{{user.first_name}}" type="text"
+                                        id="user_firstname" />
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Last Name <span class="required">*</span></label>
+                                    <input required="" class="form-control" value="{{user.last_name}}"
+                                        id="user_lastname" />
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>Display Name <span class="required">*</span></label>
+                                    <input required="" class="form-control" value="{{user.username}}" type="text"
+                                        id="user_username" />
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>Email Address <span class="required">*</span></label>
+                                    <input required="" class="form-control" value="{{user.email}}" type="email"
+                                        id="user_email" />
+                                </div>
+
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-fill-out submit font-weight-bold" name="submit"
+                                        value="Submit">Save
+                                        Changes</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <h2 class="section-title"></h2>
+            <hr class="mb-80" />
+            <div class="row">
+                <div class="col-lg-9">
+                    <h3 class="mb-30">Vendor Info</h3>
+                    <div class="card-body">
+
+                        <div class=" row">
+                            <div class="form-group col-md-6">
+                                <label>Owner</label>
+                                <input class="form-control" value="{{vendor.user}}" type="text" readonly />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Store Name</label>
+                                <input class="form-control" value="{{vendor.user.username}}" readonly />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Date Joined</label>
+                                <input class="form-control" value="{{vendor.date}}" type="text" readonly />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Active Status</label>
+                                <input class="form-control" value="{{vendor.is_active}}" readonly />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Trial Period Left</label>
+                                <input class="form-control" value="{{vendor.get_time_left}}" readonly />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Phone Contact(Whatsapp):</label>
+                                <input class="form-control" value="{{vendor.contact}}" readonly />
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label>Address: </label>
+                                <input readonly class="form-control" value="{{vendor.address}}" />
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label>Description</label>
+                                <input readonly class="form-control" value="{{vendor.description}}" />
+                            </div>
+
+
+                            <div class="col-md-12">
+                                <a href="{% url 'core:updatevendor' %}"><button type="submit"
+                                        class="btn btn-fill-out font-weight-bold">Update Vendor</button></a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <h2 class="section-title"></h2>
+            <hr class="mb-80" />
+            <div class="row">
+
+                <h3 class="mb-30">My Products</h3>
+                {% for product in products %}
+
+                <div class="col-md-3">
+                    <div class="product-item">
+                        <figure class="product-style">
+                            <img src="{{product.image.url}}" alt="{{product.title}}" class="product-item">
+                            <a href="{% url 'core:updateproduct' product.pid %}">
+                                <button type="button" class="add-to-cart" data-product-tile="add-to-cart">Edit
+                                    Product</button></a>
+
+                        </figure>
+                        <figcaption>
+                            <h3>{{product.title}}</h3>
+                            <span>{{product.vendor.title}}</span>
+                            <div class="item-price">$ {{product.price|floatformat:2}}</div>
+                        </figcaption>
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="col-md-3">
+                    <div class="product-item">
+                        <figure class="product-style">
+                            <a href="{% url 'core:addnewproduct' %}"><button type="button" class="btn"
+                                    data-product-tile="add-to-cart">Add
+                                    Product +</button></a>
+                        </figure>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock content %}

@@ -1,0 +1,50 @@
+{% extends 'partials/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<section id="featured-books" class="py-5 my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="section-header align-center">
+                    <div class="title">
+                        <span>{{query}}</span>
+                    </div>
+                    <h2 class="section-title"></h2>
+                </div>
+
+                <div class="product-list" data-aos="fade-up">
+                    <div class="row">
+
+                        {% for product in products %}
+
+                        <div class="col-md-3">
+                            <div class="product-item">
+                                <figure class="product-style">
+                                    <img src="{{product.image.url}}" alt="{{product.title}}" class="product-item">
+                                    <a href="{% url 'core:product_detail' product.pid %}">
+                                        <button type="button" class="add-to-cart" data-product-tile="add-to-cart">View
+                                            Product</button></a>
+                                </figure>
+                                <figcaption>
+                                    <h3>{{product.title}}</h3>
+                                    <span>{{product.vendor.title}}</span>
+                                    <div class="item-price">$ {{product.price|floatformat:2}}</div>
+                                </figcaption>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div><!--ft-books-slider-->
+                </div><!--grid-->
+
+
+            </div><!--inner-content-->
+        </div>
+    </div>
+</section>
+
+
+{% endblock content %}

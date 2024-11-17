@@ -1,0 +1,143 @@
+{% extends 'partials/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="container mb-30">
+    <div class="row">
+        <div class="col-xl-11 col-lg-12 m-auto">
+            <div class="row">
+                <div class="col-xl-9">
+                    <div class="product-detail accordion-detail">
+                        <div class="row mb-50 mt-30">
+                            <div class="col-md-6 col-sm-12 col-xs-12 mb-md-0 mb-sm-5">
+                                <div class="detail-gallery">
+                                    <span class="zoom-icon"><i class="fi-rs-search"></i></span>
+                                    <!-- MAIN SLIDES -->
+                                    <div class="product-image-slider">
+                                        <figure class="border-radius-10">
+                                            <img src="{{ product.image.url }}" alt="product image" />
+                                        </figure>
+                                        {% for productimage in product_images %}
+                                        <figure class="border-radius-10">
+                                            <img src="{{ productimage.images.url }}" alt="product image" />
+                                        </figure>
+                                        {% endfor %}
+                                    </div>
+                                    <!-- THUMBNAILS -->
+                                    <div class="slider-nav-thumbnails">
+                                        <div><img src="{{ product.image.url }}" alt="product image" />
+                                        </div>
+                                        {% for productimage in product_images %}
+                                        <div><img src="{{ productimage.images.url }}" alt="product image" />
+                                        </div>
+                                        {% endfor %}
+
+                                    </div>
+                                </div>
+                                <!-- End Gallery -->
+                            </div>
+                            <div class="col-md-6 col-sm-12 col-xs-12">
+                                <div class="detail-info pr-30 pl-30">
+                                    <h2 class="title-detail">{{product.title}}</h2>
+
+                                    <div class="clearfix product-price-cover">
+                                        <div class="product-price primary-color float-left">
+                                            <span class="current-price text-brand">$<span
+                                                    class="current-price text-brand current-product-price-{{product.pid}}">{{product.price}}</span>
+                                            </span>
+
+                                        </div>
+                                    </div>
+                                    <div class="short-desc mb-30">
+                                        <p class="font-lg">{{product.description|truncatechars:200|safe}}</p>
+
+                                    </div>
+
+                                    <div class="detail-extralink mb-50">
+                                        <div class="product-extra-link2">
+                                            <input type="hidden" id="url"
+                                                data-url="{% url 'core:product_detail' product.pid %}">
+
+                                            <button type="submit" class="button contact-vendor"
+                                                data-contact="{{product.vendor.contact}}">Contact
+                                                Seller</button></a>
+
+                                        </div>
+                                    </div>
+                                    <div class="font-xs">
+                                        <ul class="mr-50 float-start">
+                                            <li>Stock:<span class="in-stock text-brand ml-5">{{product.stock_items}}
+                                                    Items In Stock</span>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                                <!-- Detail Info -->
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="tab-style3">
+                                <ul class="nav nav-tabs text-uppercase">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="Description-tab" data-bs-toggle="tab"
+                                            href="#Description">Description</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="Vendor-info-tab" data-bs-toggle="tab"
+                                            href="#Vendor-info">Vendor</a>
+                                    </li>
+
+                                </ul>
+                                <div class="tab-content shop_info_tab entry-main-content">
+                                    <div class="tab-pane fade show active" id="Description">
+                                        <div class="">
+                                            <p>
+                                                {{ product.description|safe }}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="Vendor-info">
+                                        <div class="vendor-logo d-flex mb-30">
+                                            <img src="{{product.vendor.image.url}}" alt="" />
+                                            <div class="vendor-name ml-15">
+                                                <h6>
+                                                    <a href="">{{product.vendor.title}}</a>
+                                                </h6>
+
+                                            </div>
+                                        </div>
+                                        <ul class="contact-infor mb-50">
+                                            <li><img src="{% static 'assets/imgs/theme/icons/icon-location.svg' %}"
+                                                    alt="" /><strong>Address: </strong>
+                                                <span>{{product.vendor.address}}</span>
+                                            </li>
+                                            <li><img src="{% static 'assets/imgs/theme/icons/icon-contact.svg' %}"
+                                                    alt="" /><strong>Contact
+                                                    Seller:</strong><span>{{product.vendor.contact}}</span></li>
+                                        </ul>
+                                        <div class="d-flex mb-55">
+
+                                        </div>
+                                        <p>
+                                            {{product.vendor.description|safe}}
+                                        </p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

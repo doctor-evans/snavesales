@@ -1,0 +1,106 @@
+{% extends 'partials/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<section id="featured-books" class="py-5 my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="section-header align-center">
+                    <div class="title">
+                        <span>Featured items</span>
+                    </div>
+                    <h2 class="section-title"></h2>
+                </div>
+
+                <div class="product-list" data-aos="fade-up">
+                    <div class="row">
+
+                        {% for product in featured_products %}
+
+                        <div class="col-md-3">
+                            <div class="product-item">
+                                <figure class="product-style">
+                                    <img src="{{product.image.url}}" alt="{{product.title}}" class="product-item">
+                                    <a href="{% url 'core:product_detail' product.pid %}">
+                                        <button type="button" class="add-to-cart" data-product-tile="add-to-cart">View
+                                            Product</button></a>
+                                </figure>
+                                <figcaption>
+                                    <h3>{{product.title}}</h3>
+                                    <span>{{product.vendor.title}}</span>
+                                    <div class="item-price">$ {{product.price|floatformat:2}}</div>
+                                </figcaption>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div><!--ft-books-slider-->
+                </div><!--grid-->
+
+
+            </div><!--inner-content-->
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="btn-wrap align-right">
+                    <a href="{% url 'core:store' %}" class="btn-accent-arrow">View all products <i
+                            class="icon icon-ns-arrow-right"></i></a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="best-selling" class="leaf-pattern-overlay">
+    <div class="corner-pattern-overlay"></div>
+    <div class="container">
+        <div class="row justify-content-center">
+
+            <div class="col-md-8">
+
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <figure class="products-thumb">
+                            <img src="{{product_of_the_week.product.image.url}}" alt="book" class="single-image">
+                        </figure>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="product-entry">
+                            <h2 class="section-title">Product Of The Week.</h2>
+
+                            <div class="products-content">
+                                <div class="author-name">{{product_of_the_week.product.vendor}}</div>
+                                <h3 class="item-title">{{product_of_the_week.product.title}}</h3>
+                                <p>{{product_of_the_week.product.description}}</p>
+                                <div class="item-price">$ {{product_of_the_week.product.price}}</div>
+                                <div class="btn-wrap">
+                                    <a href="{% url 'core:product_detail' product_of_the_week.product.pid %}"
+                                        class="btn-accent-arrow">shop it now <i
+                                            class="icon icon-ns-arrow-right"></i></a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <!-- / row -->
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+
+{% endblock content %}

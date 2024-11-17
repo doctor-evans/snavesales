@@ -1,0 +1,46 @@
+<div class="card-body" id="vendor-update">
+    <form method="post" name="enq" class="vendor-update" data-userid="{{user.id}}">
+        {% csrf_token %}
+        <div class=" row">
+            <div class="form-group col-md-6">
+                <label>Owner</label>
+                <input class="form-control" value="{{vendor.user}}" type="text" readonly />
+            </div>
+            <div class="form-group col-md-6">
+                <label>Store Name</label>
+                <input class="form-control" value="{{vendor.user.username}}" readonly />
+            </div>
+            <div class="form-group col-md-6">
+                <label>Date Joined</label>
+                <input class="form-control" value="{{vendor.date}}" type="text" readonly />
+            </div>
+            <div class="form-group col-md-6">
+                <label>Active Status</label>
+                <input class="form-control" value="{{vendor.is_active}}" readonly />
+            </div>
+            <div class="form-group col-md-6">
+                <label>Trial Period Left</label>
+                <input class="form-control" value="{{vendor.get_time_left}}" readonly />
+            </div>
+            <div class="form-group col-md-6">
+                <label>Phone Contact(Whatsapp): <span class="required">*</span></label>
+                <input required="" class="form-control" value="{{vendor.contact}}" type="text" id="vendor_contact" />
+            </div>
+            <div class="form-group col-md-12">
+                <label>Address: <span class="required">*</span></label>
+                <input required="" class="form-control" value="{{vendor.address}}" type="text" id="vendor_address" />
+            </div>
+            <div class="form-group col-md-12">
+                <label>Description<span class="required">*</span></label>
+                <input required="" class="form-control" value="{{vendor.description}}" type="text"
+                    id="vendor_description" />
+            </div>
+
+
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-fill-out submit font-weight-bold" name="submit" value="Submit">Save
+                    Changes</button>
+            </div>
+        </div>
+    </form>
+</div>
